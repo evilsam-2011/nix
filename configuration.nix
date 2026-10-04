@@ -22,7 +22,7 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
    
-  services.getty.autologinUser = "tony";
+  services.getty.autologinUser = "sam";
   
 
   # Configure network proxy if necessary

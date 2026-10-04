@@ -2,7 +2,7 @@
 
  {
     home.username = "sam";
-    home.homeDirectory = "/home/tony";
+    home.homeDirectory = lib.mkForce  "/home/tony";
     home.stateVersion = "26.11";
     programs.bash = {
 	enable = true;
