@@ -10,7 +10,7 @@
       btw = "echo i use nixos btw";
       rebuild = "sudo nixos-rebuild switch --flake ~/nix#sam";
       vim = "nvim";
-      edit = "sudo vim /etc/nixos/";
+      edit = "sudo vim ~/nix/";
     };
   };
 
