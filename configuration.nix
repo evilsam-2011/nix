@@ -87,6 +87,8 @@
  starship
  zoxide
  tmux
+ foot
+ tree
 
  ];
 
