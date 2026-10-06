@@ -92,6 +92,22 @@
 
  ];
 
+
+# Enable automatic system upgrades using your flake
+  system.autoUpgrade = {
+    enable = true;
+    flake = "/home/sam/nix#sam";
+    dates = "weekly";
+    allowReboot = false; # Set to true if you want it to reboot automatically
+  };
+
+# Automatically clean up old generations older than 7 days
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
  programs.fish.enable = true;
 
  users.defaultUserShell = pkgs.fish; 
