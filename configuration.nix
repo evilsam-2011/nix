@@ -21,9 +21,9 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-   
+
   services.getty.autologinUser = "sam";
-  
+
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -71,19 +71,35 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
  environment.systemPackages = with pkgs; [
- vim 
- firefox
- kitty
+ vim
  git
  opencode
- 
+ waybar
+ waypaper
+ swaybg
+ zed-editor
+ rofi
+ mako
+ neovim
+ librewolf
+ fuzzel
+ fish
+ starship
+ zoxide
+ tmux
+
  ];
 
-  programs.hyprland = { 
-	enable = true;
-	xwayland.enable = true;	
-    };
+ programs.fish.enable = true;
 
+ users.defaultUserShell = pkgs.fish; 
+
+ programs.sway.enable = true;
+
+ fonts.packages = with pkgs; [
+  nerd-fonts.jetbrains-mono
+  # or nerd-fonts.fira-code, nerd-fonts.symbols-only, etc.
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
