@@ -8,7 +8,7 @@
     enable = true;
     shellAliases = {
       btw = "echo i use nixos btw";
-      rebuild = "sudo nixos-rebuild switch";
+      rebuild = "sudo nixos-rebuild switch --flake ~/nix#sam";
       vim = "nvim";
       edit = "sudo vim /etc/nixos/";
     };
@@ -18,6 +18,18 @@
     ".config/waybar" = {
       source = ./dotfiles/waybar;
       recursive = true;
+    };
+    ".config/foot" = {
+    source = ./dotfiles/foot;
+    recursive = true;
+    };
+    ".config/sway" = {
+    source = ./dotfiles/sway;
+    recursive = true;
+    };
+    ".config/fuzzel" = {
+    source = ./dotfiles/fuzzel;
+    recursive = true;
     };
   };
 }
