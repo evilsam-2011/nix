@@ -89,6 +89,7 @@
  tmux
  foot
  tree
+ emacs
 
  ];
 
