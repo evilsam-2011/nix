@@ -22,8 +22,7 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  services.getty.autologinUser = "sam";
-
+  services.displayManager.ly.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

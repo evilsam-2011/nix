@@ -35,5 +35,9 @@
     source = ./dotfiles/fish;
     recursive = true;
     };
+    ".config/nvim" = {
+    source = ./dotfiles/nvim;
+    recursive = true;
+    };
   };
 }
