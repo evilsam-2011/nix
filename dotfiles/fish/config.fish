@@ -16,5 +16,4 @@ function fish_prompt
 end
 
 
-alias rebuild = "sudo nixos-rebuild switch --flake ~/nix#sam"
-funcsace rebuild
+alias rebuild="sudo nixos-rebuild switch --flake ~/nix#sam"
