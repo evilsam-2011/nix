@@ -31,5 +31,9 @@
     source = ./dotfiles/fuzzel;
     recursive = true;
     };
+    ".config/fish" = {
+    source = ./dotfiles/fish;
+    recursive = true;
+    };
   };
 }
