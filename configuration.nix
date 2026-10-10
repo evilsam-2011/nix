@@ -89,6 +89,9 @@
  fastfetch
  ripgrep
  fd
+ bat
+ gcc
+ tree-sitter
 
  ];
 
