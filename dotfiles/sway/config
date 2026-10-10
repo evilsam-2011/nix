@@ -239,6 +239,8 @@ bindsym $mod+r mode "resize"
     bindsym Print exec grim
 
 #
+    assign [app_id="librewolf"] workspace number 2
+
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
