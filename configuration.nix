@@ -76,14 +76,11 @@
  waybar
  waypaper
  swaybg
- zed-editor
- rofi
  mako
  neovim
  librewolf
  fuzzel
  fish
- starship
  zoxide
  tmux
  foot

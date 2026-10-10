@@ -22,9 +22,8 @@ set $menu fuzzel
 exec_always waypaper --restore
 exec_always waybar
 
-smart_gaps on
 gaps inner 5
-gaps outer 3
+gaps outer 10
 default_border pixel 2
 
 # Focused window border (active)
