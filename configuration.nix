@@ -90,6 +90,8 @@
  tree
  emacs
  fastfetch
+ ripgrep
+ fd
 
  ];
 
