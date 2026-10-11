@@ -92,6 +92,8 @@
  bat
  gcc
  tree-sitter
+ obs-studio
+ mpv
 
  ];
 
@@ -116,6 +118,21 @@
  users.defaultUserShell = pkgs.fish; 
 
  programs.sway.enable = true;
+
+ # VAAPI hardware video acceleration (Intel + Radeon dGPU)
+ hardware.graphics.extraPackages = with pkgs; [
+  intel-media-driver
+  intel-vaapi-driver
+ ];
+
+ xdg.portal = {
+  enable = true;
+  wlr.settings.screencast = {
+    chooser_type = "none";
+    output_name = "eDP-1";
+  };
+ };
+
 
  fonts.packages = with pkgs; [
   nerd-fonts.jetbrains-mono
