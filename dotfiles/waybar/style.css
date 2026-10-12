@@ -84,6 +84,11 @@ button:hover {
     border-bottom: 4px solid @mag;
 }
 
+#layout {
+    color: @ylw;
+    border-bottom: 4px solid @ylw;
+}
+
 #cpu {
     color: @grn;
     border-bottom: 4px solid @grn;
@@ -91,7 +96,7 @@ button:hover {
 
 #network {
     color: @grn;
-    border-bottom: 4px solid @blu;
+    border-bottom: 4px solid @grn;
 }
 
 #network.disconnected {

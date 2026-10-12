@@ -2,12 +2,13 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.mangowm.nixosModules.mango
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -22,7 +23,19 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  services.displayManager.ly.enable = true;
+  services.greetd = {
+  enable = true;
+  settings = {
+    initial_session = {
+      command = "mango";
+      user = "sam"; # auto-login on first start, no password required
+    };
+    default_session = {
+      command = "${pkgs.tuigreet}/bin/tuigreet --cmd mango";
+      user = "greeter";
+    };
+  };
+};     
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -118,6 +131,8 @@
  users.defaultUserShell = pkgs.fish; 
 
  programs.sway.enable = true;
+
+ programs.mango.enable = true;
 
  # VAAPI hardware video acceleration (Intel + Radeon dGPU)
  hardware.graphics.extraPackages = with pkgs; [

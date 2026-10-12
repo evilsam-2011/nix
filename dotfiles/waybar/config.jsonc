@@ -10,7 +10,7 @@
         "ext/workspaces",
     ],
     "modules-center": [
-	    "sway/window",
+	"sway/window",
     ],
 
     "modules-right": [
@@ -23,14 +23,15 @@
     ],
 
     // Modules configuration
-    "ext/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "warp-on-scroll": false,
-        "format": "{name}",
-        "persistent-workspaces": {
-            "*" : 9
-        }
+    "mango/workspaces": {
+	"format": "{icon}",
+        "hide-empty": true,
+        "on-click": "activate",
+        "on-click-right": "toggle",
+        "overview-label": "OVERVIEW",
+    },
+    "mango/layout": {
+        "format": "{}",
     },
     "sway/window" : {
         "max-length": 40,
