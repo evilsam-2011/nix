@@ -30,6 +30,8 @@
 
   virtualisation.podman.enable = true;
 
+  services.xserver.windowManager.qtile.enable = true;
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
 
