@@ -1,6 +1,5 @@
 return {
   "nvim-telescope/telescope.nvim",
-  branch = "0.1.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -23,7 +22,10 @@ return {
       },
     })
 
-    telescope.load_extension("fzf")
+    local ok, err = pcall(telescope.load_extension, "fzf")
+    if not ok then
+      vim.notify("telescope: failed to load fzf extension: " .. err, vim.log.levels.WARN)
+    end
 
     -- set keymaps
     local keymap = vim.keymap -- for conciseness

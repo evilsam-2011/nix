@@ -1,18 +1,17 @@
 if status is-interactive
 end
 
+set -g fish_prompt_pwd_dir_length 0
+
 function fish_prompt
-	set_color green
-	echo -n (whoami)
+    # Set color to blue
+    set_color blue
 
-	set_color normal
-	echo -n " in "
+    # Print [username@path] $
+    printf '[%s@%s] $ ' (whoami) (prompt_pwd)
 
-	set_color blue
-	echo -n (prompt_pwd)
-
-	set_color normal
-	echo -n ' $ '
+    # Reset color back to normal
+    set_color normal
 end
 
 
