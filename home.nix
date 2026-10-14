@@ -23,10 +23,6 @@
     source = ./dotfiles/foot;
     recursive = true;
     };
-    ".config/sway" = {
-    source = ./dotfiles/sway;
-    recursive = true;
-    };
     ".config/fuzzel" = {
     source = ./dotfiles/fuzzel;
     recursive = true;
@@ -37,6 +33,10 @@
     };
     ".config/nvim" = {
     source = ./dotfiles/nvim;
+    recursive = true;
+    };
+    ".config/qtile" = {
+    source = ./dotfiles/qtile;
     recursive = true;
     };
   };

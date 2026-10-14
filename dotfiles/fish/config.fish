@@ -15,4 +15,6 @@ function fish_prompt
 end
 
 
+zoxide init fish | source
 alias rebuild="sudo nixos-rebuild switch --flake ~/nix#sam"
+alias ls="eza --icons" 

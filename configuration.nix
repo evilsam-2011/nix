@@ -97,6 +97,8 @@
  mpv
  fzf
  distrobox
+ eza
+ yazi
 
  ];
 
