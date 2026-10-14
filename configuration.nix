@@ -23,20 +23,6 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  services.greetd = {
-  enable = true;
-  settings = {
-    initial_session = {
-      command = "mango";
-      user = "sam"; # auto-login on first start, no password required
-    };
-    default_session = {
-      command = "${pkgs.tuigreet}/bin/tuigreet --cmd mango";
-      user = "greeter";
-    };
-  };
-};     
-
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -77,6 +63,17 @@
     packages = with pkgs; [];
   };
 
+  # Enable Plasma 
+  services = {
+    desktopManager.plasma6.enable = true;
+
+    # Default display manager for Plasma
+    displayManager.plasma-login-manager.enable = true;
+
+    # Optionally enable xserver
+    # xserver.enable = true;
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -104,9 +101,11 @@
  fd
  bat
  gcc
+ gnumake
  tree-sitter
  obs-studio
  mpv
+ fzf
 
  ];
 
@@ -151,6 +150,7 @@
 
  fonts.packages = with pkgs; [
   nerd-fonts.jetbrains-mono
+  nerd-fonts.iosevka
   # or nerd-fonts.fira-code, nerd-fonts.symbols-only, etc.
   ];
   system.stateVersion = "26.05"; # Did you read the comment?
