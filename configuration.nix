@@ -28,6 +28,7 @@
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
 
+  virtualisation.podman.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
@@ -94,6 +95,7 @@
  obs-studio
  mpv
  fzf
+ distrobox
 
  ];
 
