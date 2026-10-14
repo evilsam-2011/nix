@@ -3,7 +3,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.mangowm.nixosModules.mango
     ];
 
   # Use the systemd-boot EFI boot loader.
