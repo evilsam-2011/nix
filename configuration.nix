@@ -1,9 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 { config, pkgs, inputs, ... }:
-
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -62,23 +57,16 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
   };
-
+# window managers
   # Enable Plasma 
   services = {
     desktopManager.plasma6.enable = true;
-
-    # Default display manager for Plasma
     displayManager.plasma-login-manager.enable = true;
-
-    # Optionally enable xserver
-    # xserver.enable = true;
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile.
-  # You can use https://search.nixos.org/ to find more packages (and options).
  environment.systemPackages = with pkgs; [
  vim
  git
@@ -109,31 +97,11 @@
 
  ];
 
-
-# Enable automatic system upgrades using your flake
-  system.autoUpgrade = {
-    enable = true;
-    flake = "/home/sam/nix#sam";
-    dates = "weekly";
-    allowReboot = false; # Set to true if you want it to reboot automatically
-  };
-
-# Automatically clean up old generations older than 7 days
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
-
  programs.fish.enable = true;
 
  users.defaultUserShell = pkgs.fish; 
 
- programs.sway.enable = true;
 
- programs.mango.enable = true;
-
- # VAAPI hardware video acceleration (Intel + Radeon dGPU)
  hardware.graphics.extraPackages = with pkgs; [
   intel-media-driver
   intel-vaapi-driver
@@ -151,8 +119,9 @@
  fonts.packages = with pkgs; [
   nerd-fonts.jetbrains-mono
   nerd-fonts.iosevka
-  # or nerd-fonts.fira-code, nerd-fonts.symbols-only, etc.
   ];
+
+
   system.stateVersion = "26.05"; # Did you read the comment?
 
 }

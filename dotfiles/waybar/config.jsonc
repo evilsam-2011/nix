@@ -14,11 +14,11 @@
     ],
 
     "modules-right": [
-        "network",
-        "custom/sep",
+    "network",
+    "custom/sep",
 	"battery",
 	"custom/sep",
-        "clock",
+    "clock",
 	"custom/sep",
     ],
 
