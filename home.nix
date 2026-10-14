@@ -39,5 +39,9 @@
     source = ./dotfiles/qtile;
     recursive = true;
     };
+    ".config/tmux" = {
+    source = ./dotfiles/tmux;
+    recursive = true;
+    };
   };
 }
