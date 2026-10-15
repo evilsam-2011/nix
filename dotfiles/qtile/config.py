@@ -3,7 +3,18 @@ import subprocess
 from collections.abc import Callable
 
 import libqtile.resources
-from libqtile import bar, layout, qtile, widget
+from libqtile import bar, layout, qtile
+
+try:
+    from qtile_extras import widget
+    from qtile_extras.widget.decorations import BorderDecoration
+
+    _has_decorations = True
+except ImportError:
+    from libqtile import widget
+
+    _has_decorations = False
+
 from libqtile.config import Click, Drag, Group, Key, Match, Output, Screen, KeyChord
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -115,6 +126,7 @@ layouts = [
         border_focus=["#7aa2f7", "#3d59a1"],
         border_normal="#3b4261",
         border_width=4,
+        border_on_single=True,
         margin = 5,
         margin_on_single = 5,
     ),
@@ -125,6 +137,7 @@ layouts = [
         border_focus=["#7aa2f7", "#3d59a1"],
         border_normal="#3b4261",
         border_width=4,
+        border_on_single=True,
         margin = 5,
         margin_on_single = 5,
     ),
@@ -144,10 +157,49 @@ layouts = [
     # layout.Zoomy(),
 ]
 
+# --- Tokyo Night palette ---
+bg      = "#1a1b26"
+bg_dark = "#16161e"
+fg      = "#c0caf5"
+fg_dim  = "#565f89"
+blue    = "#7aa2f7"
+cyan    = "#7dcfff"
+magenta = "#bb9af7"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+orange  = "#ff9e64"
+red     = "#f7768e"
+brblk   = "#444b6a"
+
+
+def module(colour):
+    """Waybar-style module: coloured text on the bar background, with a
+    matching 4px line drawn along the bottom edge."""
+    cfg = {"foreground": colour, "background": bg}
+    if _has_decorations:
+        cfg["decorations"] = [
+            BorderDecoration(border_width=[0, 0, 4, 0], colour=colour)
+        ]
+    return cfg
+
+
+def sep():
+    """Thin '|' separator between modules."""
+    return widget.TextBox(
+        text="|",
+        font="JetBrainsMono Nerd Font",
+        fontsize=13,
+        padding=4,
+        foreground=brblk,
+        background=bg,
+    )
+
+
 widget_defaults = dict(
-    font="sans",
-    fontsize=12,
-    padding=3,
+    font="JetBrainsMono Nerd Font",
+    fontsize=13,
+    padding=6,
+    foreground=fg,
 )
 extension_defaults = widget_defaults.copy()
 
@@ -156,26 +208,69 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
+                widget.CurrentLayout(**module(blue)),
+                sep(),
+                widget.GroupBox(
+                    highlight_method="block",
+                    active=fg,
+                    inactive=fg_dim,
+                    this_current_screen_border=blue,
+                    urgent_text=red,
+                    urgent_border=red,
+                    borderwidth=3,
+                    disable_drag=True,
+                    background=bg,
                 ),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.QuickExit(),
+                widget.Prompt(background=bg),
+                widget.Chord(
+                    chords_colors={"launch": (bg, blue)},
+                    name_transform=lambda name: name.upper(),
+                    background=bg,
+                ),
+                widget.Spacer(background=bg),
+                widget.CPU(
+                    format=" \uf2db {load_percent:2.0f}%",
+                    update_interval=2,
+                    **module(cyan),
+                ),
+                sep(),
+                widget.Memory(
+                    format=" \U000F035B {MemPercent:2.0f}%",
+                    update_interval=2,
+                    **module(green),
+                ),
+                sep(),
+                widget.Battery(
+                    format=" \uf240 {percent:2.0%}",
+                    low_percentage=0.20,
+                    low_foreground=red,
+                    update_interval=10,
+                    **module(yellow),
+                ),
+                sep(),
+                widget.PulseVolume(
+                    mute_format=" \uf026 {volume}%",
+                    unmute_format=" \uf028 {volume}%",
+                    **module(magenta),
+                ),
+                sep(),
+                widget.Wlan(
+                    interface="wlp3s0",
+                    format=" \uf1eb {essid} {percent:2.0%}",
+                    disconnected_message=" \uf1eb off",
+                    update_interval=5,
+                    **module(blue),
+                ),
+                sep(),
+                widget.Clock(
+                    format=" \uf017 %a %H:%M",
+                    **module(orange),
+                ),
+                sep(),
+                widget.StatusNotifier(background=bg),
             ],
-            24,
-            background="#1a1b26",
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            30,
+            background=bg,
         ),
         wallpaper=logo,
         wallpaper_mode="center",

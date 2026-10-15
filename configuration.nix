@@ -29,7 +29,10 @@
 
   virtualisation.podman.enable = true;
 
-  services.xserver.windowManager.qtile.enable = true;
+  services.xserver.windowManager.qtile = {
+    enable = true;
+    extraPackages = python3Packages: with python3Packages; [ qtile-extras ];
+  };
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
