@@ -12,7 +12,7 @@ from libqtile import hook
 
 
 mod = "mod4"
-terminal = guess_terminal()
+terminal = foot
 
 keys = [
     # A list of available commands that can be bound to keys can be found

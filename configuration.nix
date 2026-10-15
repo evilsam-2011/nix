@@ -62,8 +62,7 @@
 # window managers
   # Enable Plasma 
   services = {
-    desktopManager.plasma6.enable = true;
-  displayManager.ly.enable = true;
+    displayManager.ly.enable = true;
   };
 
   # Allow unfree packages

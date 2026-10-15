@@ -4,13 +4,8 @@ end
 set -g fish_prompt_pwd_dir_length 0
 
 function fish_prompt
-    # Set color to blue
-    set_color blue
-
-    # Print [username@path] $
-    printf '[%s@%s] $ ' (whoami) (prompt_pwd)
-
-    # Reset color back to normal
+    set_color green
+    printf '[%s@%s:%s]$ ' (whoami) (hostname -s) (prompt_pwd)
     set_color normal
 end
 
