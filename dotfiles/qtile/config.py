@@ -4,7 +4,7 @@ from collections.abc import Callable
 
 import libqtile.resources
 from libqtile import bar, layout, qtile, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Output, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Output, Screen, KeyChord
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile import hook
@@ -12,7 +12,7 @@ from libqtile import hook
 
 
 mod = "mod4"
-terminal = foot
+terminal = "foot"
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -58,6 +58,11 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+
+    KeyChord([mod], "w", [
+        Key([], "w", lazy.spawn("fuzzel")),
+        Key([], "p", lazy.spawn("waypaper")),
+    ], name="launch"),
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -106,17 +111,35 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    layout.Columns(
+        border_focus=["#7aa2f7", "#3d59a1"],
+        border_normal="#3b4261",
+        border_width=4,
+        margin = 5,
+        margin_on_single = 5,
+    ),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
-    layout.Bsp(),
+    layout.Bsp(
+        border_focus=["#7aa2f7", "#3d59a1"],
+        border_normal="#3b4261",
+        border_width=4,
+        margin = 5,
+        margin_on_single = 5,
+    ),
     # layout.Matrix(),
     # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
-    layout.Tile(),
-    # layout.TreeTab(),
+    layout.Tile(
+        border_focus=["#7aa2f7", "#3d59a1"],
+        border_normal="#3b4261",
+        border_width=4,
+        margin = 5,
+        margin_on_single = 5,
+    ),
+    layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]
@@ -131,7 +154,7 @@ extension_defaults = widget_defaults.copy()
 logo = os.path.join(os.path.dirname(libqtile.resources.__file__), "logo.png")
 screens = [
     Screen(
-        bottom=bar.Bar(
+        top=bar.Bar(
             [
                 widget.CurrentLayout(),
                 widget.GroupBox(),
@@ -143,8 +166,6 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                 # widget.StatusNotifier(),
                 widget.Systray(),
