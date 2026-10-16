@@ -102,6 +102,7 @@
  eza
  yazi
  gh
+ lazygit
 
  ];
 
