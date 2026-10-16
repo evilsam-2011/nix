@@ -101,6 +101,7 @@
  distrobox
  eza
  yazi
+ gh
 
  ];
 
