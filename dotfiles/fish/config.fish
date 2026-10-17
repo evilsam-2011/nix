@@ -12,6 +12,9 @@ end
 
 zoxide init fish | source
 alias rebuild="sudo nixos-rebuild switch --flake ~/nix#sam"
-alias ls="eza --icons" 
+alias ls="eza --icons"
+alias la="eza --icons --all"
+alias ll="eza --icons --long"
+alias lg="lazygit"
 alias tmux="tmux -u"
 
