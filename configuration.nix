@@ -29,11 +29,10 @@
 
   virtualisation.podman.enable = true;
 
-  services.xserver.windowManager.qtile = {
-    enable = true;
-    extraPackages = python3Packages: with python3Packages; [ qtile-extras ];
+ services.xserver = {
+  enable = true;
+  windowManager.qtile.enable = true;
   };
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
 
@@ -93,6 +92,9 @@
  fd
  bat
  gcc
+ cmake
+ libvterm
+ libtool
  gnumake
  tree-sitter
  obs-studio
@@ -103,6 +105,8 @@
  yazi
  gh
  lazygit
+ clang-tools
+ pyright
 
  ];
 
